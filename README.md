@@ -19,7 +19,7 @@ Usage in you Podfile:
 --
 
 ```
-pod 'GXAlert'
+pod 'GXTransition'
 ```
 
 使用方法
