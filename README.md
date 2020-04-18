@@ -9,7 +9,7 @@ Commonly used transition animation in iOS. (including custom transition animatio
 先上个效果图
 --
 
-![IMAGE](/GXTransition.gif )
+![image](/GXTransition.gif )
 
 
 Requirements
