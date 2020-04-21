@@ -1,6 +1,6 @@
 # GXTransition
 iOS常用转场动画（包括自定义和OC自带转场动画）
-Commonly used transition animation in iOS. (including custom transition animation and objective-c own transition animation.)
+Commonly used transition animation in iOS (including custom transition animation and iOS own transition animation).
 
 备注：开发这一些列分类皆在于提高开发的效率以及改善代码的可读性和重用性，以此献上共勉！
 

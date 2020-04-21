@@ -97,6 +97,7 @@
         UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:vc];
         switch (indexPath.row) {
             case 0:
+//                [self gx_pushViewController:vc style:GXAnimationStylePush interacting:YES];
                 [self gx_presentViewController:navc style:GXAnimationStylePush interacting:YES completion:nil];
                 break;
             case 1:
