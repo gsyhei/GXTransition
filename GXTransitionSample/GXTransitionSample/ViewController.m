@@ -85,7 +85,7 @@
         headerView.textLabel.text = @"Custom —— Present and push";
     }
     else if (section == 1) {
-        headerView.textLabel.text = @"System —— Only push";
+        headerView.textLabel.text = @"System —— Present and push";
     }
     return headerView;
 }
@@ -129,6 +129,8 @@
     }
     else if (indexPath.section == 1) {
         TwoViewController *vc = [[TwoViewController alloc] initWithNibName:@"TwoViewController" bundle:nil];
+        UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:vc];
+
         switch (indexPath.row) {
             case 0:
                 [self gx_pushViewController:vc style:GXTransitionStyleFade subtype:kCATransitionFromRight interacting:YES];
@@ -137,16 +139,16 @@
                 [self gx_pushViewController:vc style:GXTransitionStylePush subtype:kCATransitionFromRight interacting:YES];
                 break;
             case 2:
-                [self gx_pushViewController:vc style:GXTransitionStyleMoveInReveal subtype:kCATransitionFromRight interacting:YES];
+                [self gx_presentViewController:navc style:GXTransitionStyleMoveInReveal subtype:kCATransitionFromRight interacting:YES completion:nil];
                 break;
             case 3:
-                [self gx_pushViewController:vc style:GXTransitionStyleCube subtype:kCATransitionFromRight interacting:YES];
+                [self gx_presentViewController:navc style:GXTransitionStyleCube subtype:kCATransitionFromRight interacting:YES completion:nil];
                 break;
             case 4:
-                [self gx_pushViewController:vc style:GXTransitionStyleOglFlip subtype:kCATransitionFromRight interacting:YES];
+                [self gx_presentViewController:navc style:GXTransitionStyleOglFlip subtype:kCATransitionFromRight interacting:YES completion:nil];
                 break;
             case 5:
-                [self gx_pushViewController:vc style:GXTransitionStylePageCurl subtype:kCATransitionFromRight interacting:YES];
+                [self gx_presentViewController:navc style:GXTransitionStylePageCurl subtype:kCATransitionFromRight interacting:YES completion:nil];
                 break;
             case 6:
                 [self gx_pushViewController:vc style:GXTransitionStyleCameralIris subtype:kCATransitionFromRight interacting:YES];

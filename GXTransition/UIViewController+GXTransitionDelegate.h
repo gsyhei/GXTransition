@@ -60,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)gx_pushViewController:(UIViewController *)viewController style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting;
 
+- (void)gx_presentViewController:(UIViewController *)viewControllerToPresent style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

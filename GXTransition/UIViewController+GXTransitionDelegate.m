@@ -41,7 +41,11 @@ static const char GX_DELEGATE = '\0';
 }
 
 - (void)gx_pushViewController:(UIViewController *)viewController style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting {
-    [self gotoViewController:viewController style:style subtype:subtype interacting:interacting];
+    [self gotoViewController:viewController isPush:YES style:style subtype:subtype interacting:interacting completion:nil];
+}
+
+- (void)gx_presentViewController:(UIViewController *)viewControllerToPresent style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion {
+    [self gotoViewController:viewControllerToPresent isPush:NO style:style subtype:subtype interacting:interacting completion:completion];
 }
 
 #pragma mark - Private
@@ -89,7 +93,7 @@ static const char GX_DELEGATE = '\0';
     }
 }
 
-- (void)gotoViewController:(UIViewController*)vc style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting {
+- (void)gotoViewController:(UIViewController*)vc isPush:(BOOL)isPush style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion {
     self.gx_animatedDelegate = [[GXAnimationSystemDelegate alloc] init];
     switch (style) {
         case GXTransitionStyleFade: {
@@ -135,9 +139,16 @@ static const char GX_DELEGATE = '\0';
             break;
         default:break;
     }
-    [self.gx_animatedDelegate configureTransition:vc isPush:YES interacting:interacting];
-    self.navigationController.delegate = self.gx_animatedDelegate;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.gx_animatedDelegate configureTransition:vc isPush:isPush interacting:interacting];
+    if (isPush) {
+        self.navigationController.delegate = self.gx_animatedDelegate;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else {
+        vc.transitioningDelegate = self.gx_animatedDelegate;
+        vc.modalPresentationStyle = UIModalPresentationCustom;
+        [self presentViewController:vc animated:YES completion:completion];
+    }
 }
 
 @end

@@ -10,6 +10,7 @@
 
 @interface GXAnimationSystemDelegate()<CAAnimationDelegate>
 @property (nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
+@property (nonatomic, strong) UIView *toSnapshotView;
 @end
 
 @implementation GXAnimationSystemDelegate
@@ -22,6 +23,7 @@
 
 - (void)presentViewAnimation:(id<UIViewControllerContextTransitioning>)transitionContext {
     self.transitionContext = transitionContext;
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     [transitionContext.containerView addSubview:toVC.view];
     
@@ -31,14 +33,20 @@
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     animation.type = self.type;
     animation.subtype = self.subtype;
-    [transitionContext.containerView.layer addAnimation:animation forKey:@"GXAnimationSystemPresent"];
+    [fromVC.view.window.layer addAnimation:animation forKey:@"GXAnimationSystemPresent"];
 }
 
 - (void)dismissViewAnimation:(id<UIViewControllerContextTransitioning>)transitionContext {
     self.transitionContext = transitionContext;
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    [transitionContext.containerView addSubview:toVC.view];
-
+    if (self.isPush) {
+        [transitionContext.containerView addSubview:toVC.view];
+    }
+    else {
+        toVC.view.hidden = YES;
+        self.toSnapshotView = [toVC.view snapshotViewAfterScreenUpdates:NO];
+        [transitionContext.containerView addSubview:self.toSnapshotView];
+    }
     [self resetDismissAnimationType];
     CATransition *animation = [CATransition animation];
     animation.delegate = self;
@@ -79,6 +87,9 @@
 #pragma mark - CAAnimationDelegate
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    UIViewController *toVC = [self.transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    toVC.view.hidden = NO;
+    [self.toSnapshotView removeFromSuperview];
     [self.transitionContext completeTransition:!self.transitionContext.transitionWasCancelled];
 }
 

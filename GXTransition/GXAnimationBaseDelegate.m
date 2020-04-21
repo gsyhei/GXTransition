@@ -88,11 +88,11 @@
 }
 
 - (id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator {
-    return self.interacting ? self.interactivePopTransition : nil;
+    return (self.interacting && !self.type) ? self.interactivePopTransition : nil;
 }
 
 - (id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator {
-    return self.interacting ? self.interactivePopTransition : nil;
+    return (self.interacting && !self.type) ? self.interactivePopTransition : nil;
 }
 
 #pragma mark - UIViewControllerAnimatedTransitioning
@@ -109,7 +109,7 @@
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
                           interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
-    return self.interacting&&!self.type ? self.interactivePopTransition : nil;
+    return (self.interacting && !self.type) ? self.interactivePopTransition : nil;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>) navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
