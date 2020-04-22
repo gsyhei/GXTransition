@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, GXAnimationStyle) {
 };
 
 /**
- * 系统自带转场风格（only push）
+ * 系统自带转场风格（present/push）
  */
 typedef NS_ENUM(NSUInteger, GXTransitionStyle) {
     GXTransitionStyleFade = 0,       // 不支持subtype
