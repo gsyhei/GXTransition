@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, GXAnimationStyle) {
 };
 
 /**
- * 系统自带转场风格（only push）
+ * 系统自带转场风格（present/push）
  */
 typedef NS_ENUM(NSUInteger, GXTransitionStyle) {
     GXTransitionStyleFade = 0,       // 不支持subtype
@@ -58,9 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)gx_presentViewController:(UIViewController *)viewControllerToPresent style:(GXAnimationStyle)style interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion;
 
-- (void)gx_pushViewController:(UIViewController *)viewController style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting;
+- (void)gx_pushViewController:(UIViewController *)viewController style:(GXTransitionStyle)style subtype:(nullable CATransitionSubtype)subtype interacting:(BOOL)interacting;
 
-- (void)gx_presentViewController:(UIViewController *)viewControllerToPresent style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion;
+- (void)gx_presentViewController:(UIViewController *)viewControllerToPresent style:(GXTransitionStyle)style subtype:(nullable CATransitionSubtype)subtype interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion;
 
 @end
 

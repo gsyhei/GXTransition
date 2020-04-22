@@ -36,6 +36,8 @@ pod 'GXTransition'
 
 - (void)gx_pushViewController:(UIViewController *)viewController style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting;
 
+- (void)gx_presentViewController:(UIViewController *)viewControllerToPresent style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion;
+
 ```
 
 支持的转场动画类型

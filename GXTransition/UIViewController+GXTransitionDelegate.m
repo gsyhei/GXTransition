@@ -40,11 +40,11 @@ static const char GX_DELEGATE = '\0';
     [self gotoViewController:viewControllerToPresent isPush:NO style:style interacting:interacting completion:completion];
 }
 
-- (void)gx_pushViewController:(UIViewController *)viewController style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting {
+- (void)gx_pushViewController:(UIViewController *)viewController style:(GXTransitionStyle)style subtype:(nullable CATransitionSubtype)subtype interacting:(BOOL)interacting {
     [self gotoViewController:viewController isPush:YES style:style subtype:subtype interacting:interacting completion:nil];
 }
 
-- (void)gx_presentViewController:(UIViewController *)viewControllerToPresent style:(GXTransitionStyle)style subtype:(CATransitionSubtype)subtype interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion {
+- (void)gx_presentViewController:(UIViewController *)viewControllerToPresent style:(GXTransitionStyle)style subtype:(nullable CATransitionSubtype)subtype interacting:(BOOL)interacting completion:(void (^ __nullable)(void))completion {
     [self gotoViewController:viewControllerToPresent isPush:NO style:style subtype:subtype interacting:interacting completion:completion];
 }
 
