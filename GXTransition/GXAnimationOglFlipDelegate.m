@@ -73,11 +73,13 @@
     transform3D.m34 = 1.0 / -500;
     transform3D = CATransform3DRotate(transform3D, M_PI, 0, 1.0, 0);
     transitionContext.containerView.layer.sublayerTransform = transform3D;
-
+    transform3D = CATransform3DIdentity;
+    transform3D.m34 = 1.0 / -500;
+    
     [self addBackgroundViewToView:toSnapshotView];
     [self addShadowToView:fromSnapshotView];
     [self animateWithContext:transitionContext isPresent:NO animations:^{
-        transitionContext.containerView.layer.sublayerTransform = CATransform3DIdentity;
+        transitionContext.containerView.layer.sublayerTransform = transform3D;
     } completion:^(BOOL finished) {
         toVC.view.hidden = NO;
         fromVC.view.hidden = NO;
