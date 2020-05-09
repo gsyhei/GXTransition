@@ -160,6 +160,7 @@
     transform3D = CATransform3DRotate(transform3D, -M_PI_2, 0, 1.0, 0);
     transitionContext.containerView.layer.sublayerTransform = transform3D;
     transform3D = CATransform3DIdentity;
+    transform3D.m34 = 1.0 / -1200;
     transform3D = CATransform3DTranslate(transform3D, 0, 0, -width * 0.5);
     
     [self addBackgroundViewToView:toSnapshotView];
