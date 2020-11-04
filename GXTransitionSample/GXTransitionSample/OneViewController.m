@@ -7,6 +7,7 @@
 //
 
 #import "OneViewController.h"
+#import "TwoViewController.h"
 
 @interface OneViewController ()
 
@@ -24,6 +25,13 @@
     if (![self.navigationController popViewControllerAnimated:YES]) {
         [self dismissViewControllerAnimated:YES completion:NULL];
     }
+}
+
+#pragma mark IBAction
+
+- (IBAction)nextButtonClicked:(id)sender {
+    TwoViewController *vc = [[TwoViewController alloc] initWithNibName:@"TwoViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

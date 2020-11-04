@@ -8,7 +8,7 @@
 
 #import "GXAnimationBaseDelegate.h"
 
-@interface GXAnimationBaseDelegate ()
+@interface GXAnimationBaseDelegate ()<UIGestureRecognizerDelegate>
 @property(nonatomic,   weak) UIViewController *presentingViewController;
 @property(nonatomic, assign) BOOL isPush;
 @property(nonatomic, assign) BOOL isPresentAnimationing;
@@ -27,6 +27,9 @@
     if (presentingViewController && interacting) {
         UIScreenEdgePanGestureRecognizer *panEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(screenEdgePanGestureHandler:)];
         panEdgeGesture.edges = UIRectEdgeLeft;
+        panEdgeGesture.delegate = self;
+        UINavigationController *navc = ((UINavigationController*)self.presentingViewController);
+        navc.interactivePopGestureRecognizer.delegate = self;
         [presentingViewController.view addGestureRecognizer:panEdgeGesture];
     }
 }
@@ -75,6 +78,23 @@
 - (void)dismissViewAnimation:(id<UIViewControllerContextTransitioning>)transitionContext {
 }
 
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    UINavigationController *navc = ((UINavigationController*)self.presentingViewController);
+    if (gestureRecognizer == ((UINavigationController*)self.presentingViewController).interactivePopGestureRecognizer) {
+        if (navc.childViewControllers.count > 1) {
+            return YES;
+        }
+    }
+    else {
+        if (navc.childViewControllers.count == 1) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
@@ -108,7 +128,7 @@
 #pragma mark - UINavigationControllerDelegate
 
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
-                          interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
+                         interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
     return (self.interacting && !self.type) ? self.interactivePopTransition : nil;
 }
 
