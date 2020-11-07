@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, GXAnimationCubeDirection) {
+    GXAnimationCubeDirectionLeft = 0,
+    GXAnimationCubeDirectionRight
+};
+
 @interface GXAnimationCubeDelegate : GXAnimationBaseDelegate
+
+@property (nonatomic, assign) GXAnimationCubeDirection direction;
 
 @end
 

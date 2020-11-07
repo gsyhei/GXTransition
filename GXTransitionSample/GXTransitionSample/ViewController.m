@@ -11,7 +11,7 @@
 #import "OneViewController.h"
 #import "TwoViewController.h"
 
-#define GX_ANIMATION_CUSTOM @[@"Push", @"PushEdgeLeft", @"PushAllLeft", @"PushAllTop", @"PushAllBottom", @"Sector", @"Erect", @"Cube", @"OglFlip"]
+#define GX_ANIMATION_CUSTOM @[@"Push", @"PushEdgeLeft", @"PushAllLeft", @"PushAllTop", @"PushAllBottom", @"Sector", @"Erect", @"Cube Left", @"Cube Right", @"OglFlip"]
 #define GX_ANIMATION_SYSTEM @[@"Fade", @"Push", @"MoveInReveal", @"Cube", @"OglFlip", @"PageCurl", @"CameralIris", @"SuckEffect", @"RippleEffect"]
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -119,9 +119,12 @@
                 [self gx_presentViewController:navc style:GXAnimationStyleErect interacting:YES completion:nil];
                 break;
             case 7:
-                [self gx_presentViewController:navc style:GXAnimationStyleCube interacting:YES completion:nil];
+                [self gx_presentViewController:navc style:GXAnimationStyleCubeLeft interacting:YES completion:nil];
                 break;
             case 8:
+                [self gx_presentViewController:navc style:GXAnimationStyleCubeRight interacting:YES completion:nil];
+                break;
+            case 9:
                 [self gx_presentViewController:navc style:GXAnimationStyleOglFlip interacting:YES completion:nil];
                 break;
             default:break;

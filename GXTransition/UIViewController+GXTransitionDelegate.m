@@ -73,8 +73,17 @@ static const char GX_DELEGATE = '\0';
         case GXAnimationStyleErect:
             self.gx_animatedDelegate = [[GXAnimationErectDelegate alloc] init];
             break;
-        case GXAnimationStyleCube:
-            self.gx_animatedDelegate = [[GXAnimationCubeDelegate alloc] init];
+        case GXAnimationStyleCubeLeft: {
+            GXAnimationCubeDelegate *cubeDelegate = [[GXAnimationCubeDelegate alloc] init];
+            cubeDelegate.direction = GXAnimationCubeDirectionLeft;
+            self.gx_animatedDelegate = cubeDelegate;
+        }
+            break;
+        case GXAnimationStyleCubeRight: {
+            GXAnimationCubeDelegate *cubeDelegate = [[GXAnimationCubeDelegate alloc] init];
+            cubeDelegate.direction = GXAnimationCubeDirectionRight;
+            self.gx_animatedDelegate = cubeDelegate;
+        }
             break;
         case GXAnimationStyleOglFlip:
             self.gx_animatedDelegate = [[GXAnimationOglFlipDelegate alloc] init];

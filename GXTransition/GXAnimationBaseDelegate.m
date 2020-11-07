@@ -36,7 +36,8 @@
 
 - (void)screenEdgePanGestureHandler:(UIScreenEdgePanGestureRecognizer*)gesture {
     UIViewController *formVC = self.presentingViewController;
-    CGFloat progress = [gesture translationInView:formVC.view].x / (formVC.view.bounds.size.width);
+    CGFloat changeX = [gesture translationInView:[[UIApplication sharedApplication] keyWindow]].x;
+    CGFloat progress = changeX / formVC.view.bounds.size.width;
     CGFloat velocity = [gesture velocityInView:[[UIApplication sharedApplication] keyWindow]].x;
     progress = MIN(1.0, MAX(0.0, progress));
     if (gesture.state == UIGestureRecognizerStateBegan) {

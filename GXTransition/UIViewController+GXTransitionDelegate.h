@@ -27,8 +27,10 @@ typedef NS_ENUM(NSUInteger, GXAnimationStyle) {
     GXAnimationStyleSector,
     /**目标视图扇侧立遮盖*/
     GXAnimationStyleErect,
-    /**当前视图与目标视图呈立方体旋转（横向）*/
-    GXAnimationStyleCube,
+    /**当前视图与目标视图呈立方体旋转（横向左）*/
+    GXAnimationStyleCubeLeft,
+    /**当前视图与目标视图呈立方体旋转（横向右）*/
+    GXAnimationStyleCubeRight,
     /**当前视图与目标视图呈正反面旋转（横向）*/
     GXAnimationStyleOglFlip,
 };
