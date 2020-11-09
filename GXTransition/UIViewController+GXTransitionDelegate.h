@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, GXAnimationStyle) {
 
 /**
  * 系统自带转场风格（present/push）
+ * 注意，这里的系统动画由于拿不到动画过程，所以侧滑返回也没有过程！
  */
 typedef NS_ENUM(NSUInteger, GXTransitionStyle) {
     GXTransitionStyleFade = 0,       // 不支持subtype
