@@ -15,7 +15,6 @@
 @property(nonatomic, assign) BOOL interacting;
 @property(nonatomic, strong) UIPercentDrivenInteractiveTransition *interactivePopTransition;
 @property(nonatomic, strong) UIView *backgroundView;
-
 @property(nonatomic,   weak) UIView *shadowSuperView;
 @end
 
@@ -27,10 +26,12 @@
     if (presentingViewController && interacting) {
         UIScreenEdgePanGestureRecognizer *panEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(screenEdgePanGestureHandler:)];
         panEdgeGesture.edges = UIRectEdgeLeft;
-        panEdgeGesture.delegate = self;
-        UINavigationController *navc = ((UINavigationController*)self.presentingViewController);
-        navc.interactivePopGestureRecognizer.delegate = self;
         [presentingViewController.view addGestureRecognizer:panEdgeGesture];
+        if ([presentingViewController isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *navc = ((UINavigationController*)self.presentingViewController);
+            navc.interactivePopGestureRecognizer.delegate = self;
+            panEdgeGesture.delegate = self;
+        }
     }
 }
 
