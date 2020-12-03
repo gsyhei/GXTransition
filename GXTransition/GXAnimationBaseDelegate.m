@@ -84,7 +84,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     UINavigationController *navc = ((UINavigationController*)self.presentingViewController);
-    if (gestureRecognizer == ((UINavigationController*)self.presentingViewController).interactivePopGestureRecognizer) {
+    if (gestureRecognizer == navc.interactivePopGestureRecognizer) {
         if (navc.childViewControllers.count > 1) {
             return YES;
         }
