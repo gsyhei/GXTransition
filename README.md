@@ -23,6 +23,10 @@ Usage in you Podfile:
 ```
 pod 'GXTransition'
 ```
+* 其它版本 [OC版本](https://github.com/gsyhei/GXTransition-Swift)
+```
+pod 'GXTransition-Swift'
+```
 
 使用方法
 --
