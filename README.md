@@ -23,7 +23,7 @@ Usage in you Podfile:
 ```
 pod 'GXTransition'
 ```
-* 其它版本 [OC版本](https://github.com/gsyhei/GXTransition-Swift)
+* 其它版本 [Swift版本](https://github.com/gsyhei/GXTransition-Swift)
 ```
 pod 'GXTransition-Swift'
 ```
